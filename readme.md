@@ -5,6 +5,6 @@ This repository contains examples and exercises for building migrations and seed
 ## Index
 
 * [Migration Example](./00-migration-example)
-  - Includes an example of a single table migration as well as customizing the location of the migrations directory
+  - Includes an example of a migration as well as customizing the location of the migrations directory
 * [Create Tables Exercise](./01-create-tables)
   - Exercise with tests for creating various tables
