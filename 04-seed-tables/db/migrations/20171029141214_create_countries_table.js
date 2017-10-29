@@ -4,7 +4,7 @@ exports.up = knex => {
     table.string('name').notNullable().defaultsTo('')
     table.integer('population').notNullable().defaultsTo(0)
     table.integer('continent_id').notNullable()
-    table.foreign('continent_id').references('continents.id')
+    table.foreign('continent_id').references('continents.id').onDelete('CASCADE')
     table.timestamps(true, true)
   })
 }

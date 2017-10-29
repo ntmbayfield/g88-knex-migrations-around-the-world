@@ -3,8 +3,8 @@ exports.up = knex => {
     table.integer('country_id').notNullable()
     table.integer('government_id').notNullable()
 
-    table.foreign('country_id').references('countries.id')
-    table.foreign('government_id').references('governments.id')
+    table.foreign('country_id').references('countries.id').onDelete('CASCADE')
+    table.foreign('government_id').references('governments.id').onDelete('CASCADE')
   })
 }
 
