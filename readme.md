@@ -8,3 +8,5 @@ This repository contains examples and exercises for building migrations and seed
   - Includes an example of a migration as well as customizing the location of the migrations directory
 * [Create Tables Exercise](./01-create-tables)
   - Exercise with tests for creating various tables
+* [Alter Tables Exercise](./02-alter-tables)
+  - Exercise with tests for both dropping columns and adding columns to an existing table using migrations
