@@ -10,12 +10,12 @@ chai.use(chaiAsPromised);
 
 global.chaiAsPromised = chaiAsPromised;
 global.expect = chai.expect;
-global.dbName = process.env.DATABASE_NAME;
+global.dbName = `${process.env.DATABASE_NAME}_test`;
 global.dbURL = process.env.DATABASE_URL || 'postgres://localhost'
 
 const dbConfig = {
   client: 'pg',
-  connection: `${dbURL}/${dbName}_test`
+  connection: `${dbURL}/${dbName}`
 };
 
 /*
