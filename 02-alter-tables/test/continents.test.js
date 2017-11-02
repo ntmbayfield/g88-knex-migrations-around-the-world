@@ -46,7 +46,8 @@ xdescribe('Alter Continents Table', function () {
 
       for (const column in expected) {
         const err = `Column ${column} is not the same`
-        expect(actual[column]).to.deep.equal(expected[column], err)
+        expect(actual[column].type).to.equal(expected[column].type, err)
+        expect(actual[column].nullable).to.equal(expected[column].nullable, err)
       }
     })
     .catch((err) => Promise.reject(err))
