@@ -1,25 +1,23 @@
 const fs = require('fs')
 const path = require('path')
 
-xdescribe('Alter Continents Table', function () {
+xdescribe('Cities Table', function () {
   beforeEach(function () {
-    this.config = { directory: path.join(__dirname, '..', 'db', 'migrations') }
-    return knex.raw(schema)
-    .then(() => knex.migrate.latest(this.config))
-    .catch(err => {
+    this.config = { directory: path.join(__dirname, '..', '..', 'db', 'migrations') }
+    return knex.migrate.latest(this.config).catch(err => {
       expect.fail(null, null, err)
     })
   })
 
-  it('adds timestamps to the table', function () {
-    return knex('continents').columnInfo()
+  it('creates the appropriate columns upon migration', function () {
+    return knex('cities').columnInfo()
     .then((actual) => {
       const expected = {
         id: {
           type: 'integer',
           maxLength: null,
           nullable: false,
-          defaultValue: 'nextval(\'continents_id_seq\'::regclass)'
+          defaultValue: 'nextval(\'cities_id_seq\'::regclass)'
         },
 
         name: {
@@ -54,14 +52,12 @@ xdescribe('Alter Continents Table', function () {
   })
 
   it('correctly rolls back the migration', function () {
-    return knex('continents').columnInfo().then(beforeColumns => {
+    return knex.schema.hasTable('cities').then(beforeRollback => {
       return knex.migrate.rollback(this.config).then(() => {
-        return knex('continents').columnInfo().then(afterColumns => {
+        return knex.schema.hasTable('cities').then(afterRollback => {
           const err = `Check the down() function in your migration`
-          expect(beforeColumns.created_at, err).to.be.ok
-          expect(beforeColumns.updated_at, err).to.be.ok
-          expect(afterColumns.created_at, err).to.be.undefined
-          expect(afterColumns.updated_at, err).to.be.undefined
+          expect(beforeRollback, err).to.be.true
+          expect(afterRollback, err).to.be.false
         })
       })
     })
