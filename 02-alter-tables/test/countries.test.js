@@ -1,15 +1,17 @@
 const fs = require('fs')
 const path = require('path')
 
-xdescribe('Countries Table', function () {
+xdescribe('Alter Countries Table', function () {
   beforeEach(function () {
     this.config = { directory: path.join(__dirname, '..', 'db', 'migrations') }
-    return knex.migrate.latest(this.config).catch(err => {
+    return knex.raw(schema)
+    .then(() => knex.migrate.latest(this.config))
+    .catch(err => {
       expect.fail(null, null, err)
     })
   })
 
-  it('creates the appropriate columns upon migration', function () {
+  it('removes government_type from the table', function () {
     return knex('countries').columnInfo()
     .then((actual) => {
       const expected = {
@@ -25,34 +27,6 @@ xdescribe('Countries Table', function () {
           maxLength: 255,
           nullable: false,
           defaultValue: '\'\'::character varying'
-        },
-
-        population: {
-          type: 'integer',
-          maxLength: null,
-          nullable: false,
-          defaultValue: '0'
-        },
-
-        continent_id: {
-          type: 'integer',
-          maxLength: null,
-          nullable: false,
-          defaultValue: null
-        },
-
-        created_at: {
-          type: 'timestamp with time zone',
-          maxLength: null,
-          nullable: false,
-          defaultValue: 'now()'
-        },
-
-        updated_at: {
-          type: 'timestamp with time zone',
-          maxLength: null,
-          nullable: false,
-          defaultValue: 'now()'
         }
       }
 
@@ -61,17 +35,25 @@ xdescribe('Countries Table', function () {
         expect(actual[column].type).to.equal(expected[column].type, err)
         expect(actual[column].nullable).to.equal(expected[column].nullable, err)
       }
+
+      expect(actual).to.deep.equal(expected)
     })
     .catch((err) => Promise.reject(err))
   })
 
   it('correctly rolls back the migration', function () {
-    return knex.schema.hasTable('countries').then(beforeRollback => {
+    return knex('countries').columnInfo().then(beforeColumns => {
       return knex.migrate.rollback(this.config).then(() => {
-        return knex.schema.hasTable('countries').then(afterRollback => {
+        return knex('countries').columnInfo().then(afterColumns => {
+          const expected = {
+            type: 'character varying',
+            maxLength: 255,
+            nullable: false,
+            defaultValue: '\'\'::character varying'
+          }
           const err = `Check the down() function in your migration`
-          expect(beforeRollback, err).to.be.true
-          expect(afterRollback, err).to.be.false
+          expect(beforeColumns.government_type, err).to.be.undefined
+          expect(afterColumns.government_type, err).to.deep.equal(expected)
         })
       })
     })

@@ -1,23 +1,23 @@
 const fs = require('fs')
 const path = require('path')
 
-xdescribe('Countries Table', function () {
+xdescribe('Architects Table', function () {
   beforeEach(function () {
-    this.config = { directory: path.join(__dirname, '..', 'db', 'migrations') }
+    this.config = { directory: path.join(__dirname, '..', '..', 'db', 'migrations') }
     return knex.migrate.latest(this.config).catch(err => {
       expect.fail(null, null, err)
     })
   })
 
   it('creates the appropriate columns upon migration', function () {
-    return knex('countries').columnInfo()
+    return knex('architects').columnInfo()
     .then((actual) => {
       const expected = {
         id: {
           type: 'integer',
           maxLength: null,
           nullable: false,
-          defaultValue: 'nextval(\'countries_id_seq\'::regclass)'
+          defaultValue: 'nextval(\'architects_id_seq\'::regclass)'
         },
 
         name: {
@@ -25,20 +25,6 @@ xdescribe('Countries Table', function () {
           maxLength: 255,
           nullable: false,
           defaultValue: '\'\'::character varying'
-        },
-
-        population: {
-          type: 'integer',
-          maxLength: null,
-          nullable: false,
-          defaultValue: '0'
-        },
-
-        continent_id: {
-          type: 'integer',
-          maxLength: null,
-          nullable: false,
-          defaultValue: null
         },
 
         created_at: {
@@ -66,9 +52,9 @@ xdescribe('Countries Table', function () {
   })
 
   it('correctly rolls back the migration', function () {
-    return knex.schema.hasTable('countries').then(beforeRollback => {
+    return knex.schema.hasTable('architects').then(beforeRollback => {
       return knex.migrate.rollback(this.config).then(() => {
-        return knex.schema.hasTable('countries').then(afterRollback => {
+        return knex.schema.hasTable('architects').then(afterRollback => {
           const err = `Check the down() function in your migration`
           expect(beforeRollback, err).to.be.true
           expect(afterRollback, err).to.be.false

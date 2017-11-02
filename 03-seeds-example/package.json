@@ -1,5 +1,5 @@
 {
-  "name": "knex-migrations-around-the-world-example",
+  "name": "knex-seeds-around-the-world-example",
   "version": "1.0.0",
   "directories": {
     "test": "test"

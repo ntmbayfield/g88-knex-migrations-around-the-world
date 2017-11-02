@@ -1,7 +1,7 @@
 const fs = require('fs')
 const path = require('path')
 
-xdescribe('Continents Table', function () {
+describe('Continents Table', function () {
   beforeEach(function () {
     this.config = { directory: path.join(__dirname, '..', 'db', 'migrations') }
     return knex.migrate.latest(this.config).catch(err => {
@@ -44,7 +44,8 @@ xdescribe('Continents Table', function () {
 
       for (const column in expected) {
         const err = `Column ${column} is not the same`
-        expect(actual[column]).to.deep.equal(expected[column], err)
+        expect(actual[column].type).to.equal(expected[column].type, err)
+        expect(actual[column].nullable).to.equal(expected[column].nullable, err)
       }
     })
     .catch((err) => Promise.reject(err))

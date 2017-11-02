@@ -1,8 +1,6 @@
 {
-  "name": "sql-assessment",
+  "name": "knex-migrations-around-the-world-create-tables",
   "version": "1.0.0",
-  "description": "Introduction to SQL",
-  "main": "index.js",
   "directories": {
     "test": "test"
   },
@@ -18,20 +16,5 @@
   },
   "scripts": {
     "test": "mocha"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/gSchool/sql-assessment.git"
-  },
-  "keywords": [
-    "SQL",
-    "PSQL",
-    "database"
-  ],
-  "author": "gSchool",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/gSchool/sql-assessment/issues"
-  },
-  "homepage": "https://github.com/gSchool/sql-assessment#readme"
+  }
 }

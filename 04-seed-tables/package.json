@@ -1,5 +1,5 @@
 {
-  "name": "knex-migrations-around-the-world-example",
+  "name": "knex-seeds-around-the-world-create-seeds",
   "version": "1.0.0",
   "directories": {
     "test": "test"
@@ -15,7 +15,6 @@
     "mocha": "^3.5.3"
   },
   "scripts": {
-    "start": "node src/main.js",
     "test": "mocha"
   }
 }
