@@ -1,7 +1,7 @@
 const fs = require('fs')
 const path = require('path')
 
-xdescribe('Alter Continents Table', function () {
+describe('Alter Continents Table', function () {
   beforeEach(function () {
     this.config = { directory: path.join(__dirname, '..', 'db', 'migrations') }
     return knex.raw(schema)
