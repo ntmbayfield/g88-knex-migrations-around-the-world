@@ -1,7 +1,7 @@
 const fs = require('fs')
 const path = require('path')
 
-xdescribe('Remove Seeds', function () {
+describe('Remove Seeds', function () {
   beforeEach(function () {
     this.config = {
       migrations: {
