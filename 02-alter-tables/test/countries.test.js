@@ -1,7 +1,7 @@
 const fs = require('fs')
 const path = require('path')
 
-xdescribe('Alter Countries Table', function () {
+describe('Alter Countries Table', function () {
   beforeEach(function () {
     this.config = { directory: path.join(__dirname, '..', 'db', 'migrations') }
     return knex.raw(schema)

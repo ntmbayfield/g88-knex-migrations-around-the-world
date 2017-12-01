@@ -1,7 +1,7 @@
 const fs = require('fs')
 const path = require('path')
 
-xdescribe('Governments Table', function () {
+describe('Governments Table', function () {
   beforeEach(function () {
     this.config = { directory: path.join(__dirname, '..', 'db', 'migrations') }
     return knex.migrate.latest(this.config).catch(err => {
