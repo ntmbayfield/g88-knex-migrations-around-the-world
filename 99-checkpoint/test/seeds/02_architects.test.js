@@ -1,7 +1,7 @@
 const fs = require('fs')
 const path = require('path')
 
-xdescribe('Architects Seeds', function () {
+describe('Architects Seeds', function () {
   beforeEach(function () {
     this.config = {
       migrations: {
