@@ -1,7 +1,7 @@
 const fs = require('fs')
 const path = require('path')
 
-xdescribe('Landmarks Seeds', function () {
+describe('Landmarks Seeds', function () {
   beforeEach(function () {
     this.config = {
       migrations: {
