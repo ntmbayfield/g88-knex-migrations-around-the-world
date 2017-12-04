@@ -1,6 +1,9 @@
 # Install latest version of node
 FROM node:latest
 
+# Install application needed to check for existence of database
+RUN apt-get update && apt-get install -y postgresql-client
+
 # Create directory for app
 RUN mkdir /app
 
@@ -23,4 +26,3 @@ ADD $SUBMISSION_SUBFOLDER /app
 # Overwrite files in student fork with upstream files
 ADD test.sh /app
 ADD package.json /app
-ADD knexfile.js /app
