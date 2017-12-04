@@ -1,6 +1,9 @@
 # Install latest version of node
 FROM node:latest
 
+# Install application needed to check for existence of database
+RUN apt-get update && apt-get install -y postgresql-client
+
 # Create directory for app
 RUN mkdir /app
 
