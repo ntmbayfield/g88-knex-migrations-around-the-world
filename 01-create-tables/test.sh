@@ -5,7 +5,7 @@
 DATABASE_SERVICE=db
 COUNTER=0
 EXIT_CODE=1
-SECONDS_BEFORE_TIMEOUT=59
+SECONDS_BEFORE_TIMEOUT=30
 
 # check to see if script is running in docker
 if [ -f /.dockerenv ]; then
