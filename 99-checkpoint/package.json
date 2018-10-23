@@ -15,6 +15,7 @@
     "mocha": "^3.5.3"
   },
   "scripts": {
-    "test": "mocha --recursive"
+    "test": "mocha --recursive",
+    "knex": "knex"
   }
 }
