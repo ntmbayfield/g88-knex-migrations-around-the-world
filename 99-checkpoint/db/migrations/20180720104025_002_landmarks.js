@@ -1,11 +1,12 @@
 
 exports.up = function(knex, Promise) {
   return knex.schema.createTable('landmarks', table => {
-    table.increments()
+    table.increments('id')
     table.string('name').notNullable().defaultsTo('')
     table.integer('established').notNullable().defaultsTo(0)
-    table.integer('city_id').notNullable()
+    table.integer('city_id').notNullable().defaultsTo(0)
     table.foreign('city_id').references('cities.id').onDelete('CASCADE')
+    table.timestamp(true, true)
   })
 };
 
