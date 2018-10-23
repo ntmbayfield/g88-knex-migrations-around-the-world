@@ -1,8 +1,9 @@
 
 exports.up = function(knex, Promise) {
   return knex.schema.createTable('cities', table => {
-    table.increments()
+    table.increments('id')
     table.string('name').notNullable().defaultsTo('')
+    table.timestamps(true, true)
   })
 };
 
