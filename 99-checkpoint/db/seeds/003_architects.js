@@ -5,9 +5,14 @@ exports.seed = function(knex, Promise) {
     .then(function () {
       // Inserts seed entries
       return knex('architects').insert([
-        {id: 1, name: 'rowValue1'},
-        {id: 2, name: 'rowValue2'},
-        {id: 3, name: 'rowValue3'}
+        {id: 1, name: 'Sally Salesforce'},
+        {id: 2, name: 'George Galvanize'},
+        {id: 3, name: 'Oscar Oracle'}
       ]);
-    });
+    })
+
+    .then(() => {
+      return knex.raw(
+         `SELECT setval('architects_id_seq', (SELECT MAX(id) FROM architects));`)
+    })
 };
