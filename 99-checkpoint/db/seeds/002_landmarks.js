@@ -16,7 +16,19 @@ exports.seed = function(knex, Promise) {
         { id: 3,
           name: 'Bull Fight Arena',
           established: 2004,
-          city_id: 3}
+          city_id: 3},
+        { id: 4,
+          name: 'Carcassone Castle',
+          established: 1621,
+          city_id: 4},
+        { id: 5,
+          name: 'Musee Dorsay',
+          established: 1834,
+          city_id: 5},
+        { id: 6,
+          name: 'The Louvre',
+          established: 1955,
+          city_id: 5}
       ])
     }).then(() => {
       return knex.raw(

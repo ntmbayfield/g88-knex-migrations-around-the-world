@@ -7,7 +7,9 @@ exports.seed = function(knex, Promise) {
       return knex('architects').insert([
         {id: 1, name: 'Sally Salesforce'},
         {id: 2, name: 'George Galvanize'},
-        {id: 3, name: 'Oscar Oracle'}
+        {id: 3, name: 'Oscar Oracle'},
+        {id: 4, name: 'Carl Corsini'},
+        {id: 5, name: 'Nik Seif'}
       ]);
     })
 
